@@ -1,0 +1,9 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+<center><h1>{{ grafico.name }}</h1>
+<img src="{{ '/static/' + grafico.file }}" alt="{{ grafico.name }}" style="width: 100%; max-width: 600px;">
+<p>{{ grafico.description }}</p>
+<a href="{{ '/static/' + grafico.pdf_file }}" target="_blank" class="btn btn-primary mt-3">Ver interpretación y recomendación</a>
+<a href="/graficos" class="btn btn-secondary">Volver a la lista</a>
+</center>
+{% include 'footer.html' %}

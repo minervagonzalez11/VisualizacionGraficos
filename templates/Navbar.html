@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <!-- Logo de la Navbar -->
+    <a class="navbar-brand" href="/">Inicio</a>
+
+    <!-- Botón para mostrar/ocultar en pantallas pequeñas -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Contenido colapsable de la Navbar -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Links de navegación -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/graficos">Gráficos</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="menuDesplegable"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Más opciones
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="menuDesplegable">
+            <li><a class="dropdown-item" href="#">Estadísticas</a></li>
+            <li><a class="dropdown-item" href="#">Reportes</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Configuraciones</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contacto">Contacto</a>
+        </li>
+      </ul>
+
+      <!-- Formulario de búsqueda -->
+      <form class="d-flex" action="/buscar" method="GET">
+        <input
+          class="form-control me-2"
+          type="search"
+          name="q"
+          placeholder="Buscar..."
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>

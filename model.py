@@ -2,10 +2,8 @@ from pydantic import BaseModel
 
 
 
-class Item(BaseModel):
-    descripccion: str 
-    status:str
-
-class todo (BaseModel):
-    id: int 
-    item: str  
+class Graficos(BaseModel):
+    id: int
+    titulo: str
+    descripcion: str
+    imagen: str 

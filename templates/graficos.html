@@ -1,0 +1,21 @@
+{% include 'header.html' %} {% include 'navbar.html' %} 
+
+<h3>{{text}}</h3>
+<a class="btn btn-success" role="button" href="/graficos">Volver a los gráficos</a>
+
+<div class="row mt-4">
+  {% for imagen in images %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img src="{{ url_for('static', path='graficas/' + imagen) }}" class="card-img-top" alt="Gráfico {{ imagen }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ imagen }}</h5>
+          <p class="card-text">Descripción o detalles adicionales sobre el gráfico.</p>
+          <a href="{{ url_for('static', path='graficas/' + imagen) }}" class="btn btn-primary" target="_blank">Ver gráfico completo</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% include 'footer.html' %}

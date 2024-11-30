@@ -1,0 +1,47 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+<h1 class="text-center">{{ text }}</h1>
+<center><p>DEFINICION DE PROBLEMA</p></center>
+<p> La tienda de ropa Haro está teniendo problemas debido a que usan un proceso inadecuado para llevar el control 
+  del inventario, esto provoca errores frecuentes en el registro de productos, lo que lleva a que productos populares 
+  se agoten y no estén disponibles cuando los clientes los buscan y como resultado los clientes se sienten insatisfechos 
+  y se pierden ventas importantes, además, es difícil identificar cuáles productos se venden más, por lo tanto
+  es complicado tomar decisiones para mejorar las ventas y las ganancias.
+  </p>
+  <center><p>OBJETIVOS EMPRESARIALES</p></center>
+<p> •	Reducir el error de inventario en un 20% en los próximos tres meses.<br>
+  •	Aumentar la satisfacción del cliente en un 15% a través de la mejora en la disponibilidad de productos.<br>
+  •	Mejorar la experiencia del cliente mediante una gestión de inventario más eficiente.
+  </p>
+  <center><p>ESTABLECIMIENTO DE KPIS</p></center>
+  <p>•	Reducir los errores entre el inventario registrado y el real, pasando del 30% al 10% en tres meses<br>
+    •	Reducir en un 20% los casos de productos que no estén en stock, garantizando que los más populares estén siempre disponibles.<br>
+    •	Mejorar la satisfacción del cliente, aumentando el porcentaje de clientes satisfechos del 75% al 90%, asegurando que encuentren lo que buscan en la tienda.<br>
+    •	Reducir el tiempo que se dedica a la gestión del inventario de 10 horas a 7 horas por semana en los próximos seis meses.
+    </p>
+    <center><p>METAS DE LA EMPRESA</p></center>
+  <p>•	Implementar un método que permita reducir los errores en el registro de productos y asegurar que la información del inventario sea precisa.<br>
+    •	Asegurar que los productos más demandados estén siempre en stock para mejorar la experiencia del cliente y evitar pérdidas de ventas.<br>
+    •	Reducir el tiempo y los recursos dedicados a esta tarea, facilitando procesos más ágiles y precisos.<br>
+    •	Ofrecer una mejor experiencia mediante la disponibilidad constante de productos y la reducción de errores en el inventario.<br>
+    •	Mantener canales de comunicación efectivos para garantizar entregas rápidas y confiables de productos necesarios.    
+    </p>
+    <center><h3>Visualización de Gráficos</h3></center>
+<div class="row">
+  {% for grafico in graficos %}
+  <div class="col-md-4 mb-4">
+    <div class="card" style="width: 18rem;">
+      <img src="{{ '/static/' + grafico.file }}" class="card-img-top" alt="{{ grafico.name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ grafico.name }}</h5>
+        <p class="card-text">{{ grafico.description }}</p>
+        <a href="/graficos/{{ grafico.file }}" class="btn btn-primary">Ver detalles</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<center><p>FUENTE DE DATOS</p></center>
+  <p>Hoja de cálculo actualizada del inventario de la tienda de ropa Haro    
+    </p>
+{% include 'footer.html' %}
