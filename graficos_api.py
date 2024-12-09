@@ -1,28 +1,28 @@
 import os
 from typing import List, Dict
 
-# Ruta base donde se almacenan las imágenes de los gráficos
+#ruta base donde se almacenan las imagenes de los graficos
 BASE_DIR = "static/graficas/"
 
-# Listas para almacenar los gráficos y sus detalles
+#listas para almacenar los graficos y sus detalles
 list_graficos: List[str] = []
 list_detalles = []
 
-# Función para obtener todos los gráficos
+#funcion para obtener todos los graficos
 def all_graficos() -> List[Dict]:
     if not list_graficos:
-        # Listar todos los archivos en el directorio de gráficos
+        #listar todos los archivos en el directorio de graficos
         list_graficos.extend([file for file in os.listdir(BASE_DIR) if file.endswith((".png", ".jpg", ".jpeg"))])
 
-    # Crear una lista con información básica de cada gráfico
+    #crear una lista con informacion basica de cada grafico
     return [{"id": i + 1, "imagen": f"{BASE_DIR}{file}"} for i, file in enumerate(list_graficos)]
 
-# Función para obtener detalles de cada gráfico
+#funcion para obtener detalles de cada grafico
 def graficos_details() -> List[Dict]:
     if not list_detalles:
-        all_graficos()  # Asegurarse de que los gráficos estén listados
+        all_graficos()  #asegura de que los graficos esten listados
 
-        # Crear detalles ficticios para cada gráfico (puedes personalizarlos)
+        #crea  detalles ficticios para cada gráfico (puedes personalizarlos)
         for i, grafico in enumerate(list_graficos):
             detalles = {
                 "id": i + 1,

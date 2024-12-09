@@ -1,18 +1,20 @@
 from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
+from fastapi.responses import FileResponse
 import os
 
-# Crear un router para las rutas de gráficos
+#crea las rutas de graficos
 graficos = APIRouter()
 
-# Configurar el directorio de plantillas
+#configura el directorio de plantillas
 templates = Jinja2Templates(directory="templates/")
 
-# Montar la carpeta `static`
+#montar la carpeta static
 graficos.mount("/static", StaticFiles(directory="static/"), name="static")
 
-# Datos de los gráficos
+#datos de los graficos
 graficos_info = [
     {"name": "Ventas por Categoría y Genero de Cliente", "file": "CategoriaGenero.png", "description": "Gráfico de categorías y genero de cliente.","pdf_file": "interpretaciones/VentasCategoriayGeneroCliente.pdf"},
     {"name": "Distribución de Clientes Activos e Inactivos", "file": "ClientesActivosInactivos.png", "description": "Gráfico de clientes activos e inactivos.","pdf_file": "interpretaciones/ClientesActivoseInactivos.pdf"},
@@ -22,15 +24,26 @@ graficos_info = [
     {"name": "Ventas por Mes", "file": "VentasMes.png", "description": "Evolución de las ventas durante el mes.","pdf_file": "interpretaciones/VentasporMes.pdf"},
 ]
 
-# Ruta principal para mostrar todos los gráficos
+# Ruta de inicio: redirige a /graficos
+@graficos.get("/")
+def redirect_to_graficos():
+    return RedirectResponse(url="/graficos")
+
+# Ruta de inicio
+@graficos.get("/")
+def redirect_to_graficos():
+    return RedirectResponse(url="/graficos")
+
+
+#ruta principal para mostrar todos los graficos
 @graficos.get("/graficos")
 def show_all_graficos(request: Request):
     return templates.TemplateResponse(
         "home.html",
-        {"request": request, "title": "Gráficos de la Tienda", "text": "Tienda de Ropa Haro", "graficos": graficos_info}
+        {"request": request, "title": "Graficos de la Tienda", "text": "Tienda de Ropa Haro", "graficos": graficos_info}
     )
 
-# Ruta para detalles de cada gráfico
+#ruta para detalles de cada grafico
 @graficos.get("/graficos/{grafico_name}")
 def show_grafico_detail(request: Request, grafico_name: str):
     grafico = next((g for g in graficos_info if g["file"] == grafico_name), None)
@@ -40,6 +53,12 @@ def show_grafico_detail(request: Request, grafico_name: str):
             {"request": request, "title": grafico["name"], "grafico": grafico}
         )
     return {"error": "Gráfico no encontrado"}
+
+@graficos.get("/diccionario-datos")
+def get_diccionario_pdf():
+    pdf_path = os.path.join("static", "interpretaciones", "Diccionario.pdf")
+    return FileResponse(pdf_path, media_type="application/pdf", filename="Diccionario.pdf", headers={"Content-Disposition": "inline; filename=Diccionario.pdf"})
+
 
 
 #uvicorn api:app --reload
